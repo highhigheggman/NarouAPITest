@@ -20,12 +20,15 @@ class NarouAPI {
         let parameters: Parameters = [
             "out" : "json",
             "order" : "hyoka",
-            
+            "of" : "t-n-u-w-s-gp-gl"
         ]
+        
         Alamofire.request(baseURL,method: .get, parameters: parameters, encoding: JSONEncoding.default).response { response in
             guard let data = response.data else { return }
-            print("get")
-            print(data as Any)
+            let overviewModels: [NovelOverviewModel] = try! JSONDecoder().decode([NovelOverviewModel].self, from: data)
+            
+            print(overviewModels)
+            
         }
     }
     

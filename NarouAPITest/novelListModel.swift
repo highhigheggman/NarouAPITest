@@ -8,6 +8,12 @@
 
 import Foundation
 
-struct novelListModel: Codable {
-    
+struct NovelOverviewModel: Codable {
+    let title: String
+    let ncode: String
+    let userid: String
+    let writer: String
+    let story: String
+    let general_lastup: Date
+    let global_point: Int
 }
