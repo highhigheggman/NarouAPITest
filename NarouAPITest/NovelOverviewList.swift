@@ -13,16 +13,21 @@ struct MetaData: Codable {
 }
 
 struct NoveiOverview: Codable {
-    let title: String = ""
-    let ncode: String = ""
-    let userid: Int = 0
-    let writer: String = ""
-    let story: String = ""
+    var title: String
+    var ncode: String
+    var userid: Int
+    var writer: String
+    var story: String
     
-    let generalLastup: String
-    let globalPoint: Int
+    var generalLastup: String
+    var globalPoint: Int
     
     enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case ncode = "ncode"
+        case userid = "userid"
+        case writer = "writer"
+        case story = "story"
         case generalLastup = "general_lastup"
         case globalPoint = "global_point"
     }
@@ -35,6 +40,9 @@ struct NovelOverviewList {
     init(metaData: MetaData, novelOverviews: [NoveiOverview]) {
         self.metaData = metaData
         self.novelOverviews = novelOverviews
+        
+        print(self.metaData)
+        print(self.novelOverviews)
     }
     
 }
