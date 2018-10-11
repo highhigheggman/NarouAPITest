@@ -24,7 +24,10 @@ class NarouAPI {
             
         ]
         
-        Alamofire.request(baseURL,method: .get, parameters: parameters).response  { response in
+        Alamofire.request(baseURL,method: .get, parameters: parameters)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response  { response in
             
             print("Request: \(response.request)")
             print("Response: \(response.response)")
