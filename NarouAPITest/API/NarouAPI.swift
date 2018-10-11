@@ -27,18 +27,22 @@ class NarouAPI {
         Alamofire.request(baseURL,method: .get, parameters: parameters)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
-            .response  { response in
+            .responseData  { response in
+                
+                switch response.result {
+                case .success:
+                    guard let data = response.data else { return }
+                    let novelOverviewList: NovelOverviewList? = try? JSONDecoder().decode(NovelOverviewList.self, from: data)
+                    
+                    if let novelOverviewList = novelOverviewList {
+                        print(novelOverviewList.novelOverviews)
+                    }
+                    
+                case.failure(let error):
+                    print(error)
+                }
             
-            print("Request: \(response.request)")
-            print("Response: \(response.response)")
-            print("Error: \(response.error)")
-            
-            guard let data = response.data else { return }
-            let novelOverviewList: NovelOverviewList? = try? JSONDecoder().decode(NovelOverviewList.self, from: data)
-            
-            if let novelOverviewList = novelOverviewList {
-                print(novelOverviewList.novelOverviews)
-            }
+
             
         }
     }
