@@ -16,23 +16,25 @@ class NarouAPI {
         baseURL = "https://api.syosetu.com/novelapi/api/"
     }
     
-    func getTitles() {
+    func getOverViewList(sortOption: NarouSortOption) {
         let parameters: Parameters = [
             "out" : "json",
-            "order" : "hyoka",
+            "order" : sortOption.rawValue,
             "of" : "t-n-u-w-s-gp-gl",
             
         ]
         
         Alamofire.request(baseURL,method: .get, parameters: parameters).response  { response in
             
+            print("Request: \(response.request)")
+            print("Response: \(response.response)")
+            print("Error: \(response.error)")
+            
             guard let data = response.data else { return }
-                        
-            do {
-                let novelOverviewList: NovelOverviewList = try JSONDecoder().decode(NovelOverviewList.self, from: data)
-                
-            } catch {
-                print(error)
+            let novelOverviewList: NovelOverviewList? = try? JSONDecoder().decode(NovelOverviewList.self, from: data)
+            
+            if let novelOverviewList = novelOverviewList {
+                print(novelOverviewList.novelOverviews)
             }
             
         }
