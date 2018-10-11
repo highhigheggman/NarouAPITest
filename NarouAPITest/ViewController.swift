@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let narouAPI = NarouAPI()
-        narouAPI.getTitles()
+        narouAPI.getOverViewList(sortOption: .hyoka)
     }
 
 

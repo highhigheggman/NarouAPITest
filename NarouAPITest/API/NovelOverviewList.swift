@@ -6,6 +6,8 @@
 //  Copyright © 2018 yoshiki-t. All rights reserved.
 //
 
+import Foundation
+
 struct NovelOverviewList {
     let metaData: MetaData
     let novelOverviews: [NoveiOverview]
@@ -13,9 +15,6 @@ struct NovelOverviewList {
     init(metaData: MetaData, novelOverviews: [NoveiOverview]) {
         self.metaData = metaData
         self.novelOverviews = novelOverviews
-        
-        print(self.metaData)
-        print(self.novelOverviews)
     }
     
 }
