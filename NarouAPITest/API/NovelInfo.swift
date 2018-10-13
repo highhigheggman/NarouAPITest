@@ -1,12 +1,12 @@
 //
-//  NovelOverview.swift
+//  NovelInfo.swift
 //  NarouAPITest
 //
 //  Created by yoshiki-t on 2018/10/10.
 //  Copyright © 2018 yoshiki-t. All rights reserved.
 //
 
-struct NoveiOverview: Codable {
+struct NovelInfo: Codable {
     var title: String
     var ncode: String
     var userid: Int

@@ -16,9 +16,9 @@ class NarouAPI {
         baseURL = "https://api.syosetu.com/novelapi/api/"
     }
     
-    func getOverViewList(sortOption: NarouSortOption) {
+    func getOverViewList(sortOption: NarouSortOption, completion: @escaping (NarouResult<NarouAPIResponse>) -> ()){
         let parameters: Parameters = [
-            "out" : "json",
+            //"out" : "json",
             "order" : sortOption.rawValue,
             "of" : "t-n-u-w-s-gp-gl",
             
@@ -27,22 +27,25 @@ class NarouAPI {
         Alamofire.request(baseURL,method: .get, parameters: parameters)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
-            .responseData  { response in
+            .responseData { response in
+                
+                guard response.error == nil else {
+                    return(.failure(NarouAPIError.network))
+                }
                 
                 switch response.result {
                 case .success:
                     guard let data = response.data else { return }
-                    let novelOverviewList: NovelOverviewList? = try? JSONDecoder().decode(NovelOverviewList.self, from: data)
-                    
-                    if let novelOverviewList = novelOverviewList {
-                        print(novelOverviewList.novelOverviews)
+                    do {
+                        let apiResponse: NarouAPIResponse = try JSONDecoder().decode(NarouAPIResponse.self, from: data)
+                        print(apiResponse.novelInfoList)
+                    } catch {
+                        
                     }
                     
                 case.failure(let error):
                     print(error)
                 }
-            
-
             
         }
     }

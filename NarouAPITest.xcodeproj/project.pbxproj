@@ -15,10 +15,12 @@
 		6F10806C215FA0BE008FE28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F10806B215FA0BE008FE28A /* Assets.xcassets */; };
 		6F10806F215FA0BE008FE28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F10806D215FA0BE008FE28A /* LaunchScreen.storyboard */; };
 		6F108077215FA0E1008FE28A /* NarouAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F108076215FA0E1008FE28A /* NarouAPI.swift */; };
-		6F6FC8C6216B2637007C9C30 /* NovelOverviewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8C5216B2637007C9C30 /* NovelOverviewList.swift */; };
-		6F6FC8C8216E35E8007C9C30 /* NovelOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8C7216E35E8007C9C30 /* NovelOverview.swift */; };
+		6F6FC8C6216B2637007C9C30 /* NarouAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8C5216B2637007C9C30 /* NarouAPIResponse.swift */; };
+		6F6FC8C8216E35E8007C9C30 /* NovelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8C7216E35E8007C9C30 /* NovelInfo.swift */; };
 		6F6FC8CA216E3627007C9C30 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8C9216E3627007C9C30 /* MetaData.swift */; };
 		6F6FC8CC216F9EF1007C9C30 /* NarouSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8CB216F9EF1007C9C30 /* NarouSortOption.swift */; };
+		6F6FC8D0217230F6007C9C30 /* NarouAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8CF217230F6007C9C30 /* NarouAPIError.swift */; };
+		6F6FC8D221724449007C9C30 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FC8D121724449007C9C30 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +34,12 @@
 		6F10806E215FA0BE008FE28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F108070215FA0BE008FE28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F108076215FA0E1008FE28A /* NarouAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouAPI.swift; sourceTree = "<group>"; };
-		6F6FC8C5216B2637007C9C30 /* NovelOverviewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelOverviewList.swift; sourceTree = "<group>"; };
-		6F6FC8C7216E35E8007C9C30 /* NovelOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelOverview.swift; sourceTree = "<group>"; };
+		6F6FC8C5216B2637007C9C30 /* NarouAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouAPIResponse.swift; sourceTree = "<group>"; };
+		6F6FC8C7216E35E8007C9C30 /* NovelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelInfo.swift; sourceTree = "<group>"; };
 		6F6FC8C9216E3627007C9C30 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		6F6FC8CB216F9EF1007C9C30 /* NarouSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouSortOption.swift; sourceTree = "<group>"; };
+		6F6FC8CF217230F6007C9C30 /* NarouAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouAPIError.swift; sourceTree = "<group>"; };
+		6F6FC8D121724449007C9C30 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		C56E3ED1615D6A7692473065 /* Pods_NarouAPITest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NarouAPITest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBB9800D9AEE84258D85C5C /* Pods-NarouAPITest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NarouAPITest.release.xcconfig"; path = "Pods/Target Support Files/Pods-NarouAPITest/Pods-NarouAPITest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,10 +102,12 @@
 			isa = PBXGroup;
 			children = (
 				6F108076215FA0E1008FE28A /* NarouAPI.swift */,
+				6F6FC8D121724449007C9C30 /* Result.swift */,
+				6F6FC8CF217230F6007C9C30 /* NarouAPIError.swift */,
 				6F6FC8CB216F9EF1007C9C30 /* NarouSortOption.swift */,
 				6F6FC8C9216E3627007C9C30 /* MetaData.swift */,
-				6F6FC8C7216E35E8007C9C30 /* NovelOverview.swift */,
-				6F6FC8C5216B2637007C9C30 /* NovelOverviewList.swift */,
+				6F6FC8C7216E35E8007C9C30 /* NovelInfo.swift */,
+				6F6FC8C5216B2637007C9C30 /* NarouAPIResponse.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -227,11 +233,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F108077215FA0E1008FE28A /* NarouAPI.swift in Sources */,
-				6F6FC8C8216E35E8007C9C30 /* NovelOverview.swift in Sources */,
+				6F6FC8C8216E35E8007C9C30 /* NovelInfo.swift in Sources */,
 				6F108064215FA0B9008FE28A /* ViewController.swift in Sources */,
 				6F10806A215FA0B9008FE28A /* NarouAPITest.xcdatamodeld in Sources */,
 				6F108062215FA0B9008FE28A /* AppDelegate.swift in Sources */,
-				6F6FC8C6216B2637007C9C30 /* NovelOverviewList.swift in Sources */,
+				6F6FC8D0217230F6007C9C30 /* NarouAPIError.swift in Sources */,
+				6F6FC8D221724449007C9C30 /* Result.swift in Sources */,
+				6F6FC8C6216B2637007C9C30 /* NarouAPIResponse.swift in Sources */,
 				6F6FC8CC216F9EF1007C9C30 /* NarouSortOption.swift in Sources */,
 				6F6FC8CA216E3627007C9C30 /* MetaData.swift in Sources */,
 			);

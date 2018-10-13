@@ -1,5 +1,5 @@
 //
-//  NovelOverviewList.swift
+//  NarouAPIResponse.swift
 //  NarouAPITest
 //
 //  Created by yoshiki-t on 2018/10/08.
@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct NovelOverviewList {
+struct NarouAPIResponse {
     let metaData: MetaData
-    let novelOverviews: [NoveiOverview]
+    let novelInfoList: [NovelInfo]
     
-    init(metaData: MetaData, novelOverviews: [NoveiOverview]) {
+    init(metaData: MetaData, novelInfoList: [NovelInfo]) {
         self.metaData = metaData
-        self.novelOverviews = novelOverviews
+        self.novelInfoList = novelInfoList
     }
     
 }
 
-extension NovelOverviewList: Decodable {
+extension NarouAPIResponse: Decodable {
     
     init(from decoder: Decoder) throws {
         var meta: MetaData = MetaData(allcount: 0)
-        var overviews: [NoveiOverview] = []
+        var novelInfoList: [NovelInfo] = []
         var unkeyedContainer = try decoder.unkeyedContainer()
         
         while !unkeyedContainer.isAtEnd {
@@ -35,8 +35,8 @@ extension NovelOverviewList: Decodable {
                     meta = try unkeyedContainer.decode(MetaData.self)
                     
                 } else {
-                    let overview = try unkeyedContainer.decode(NoveiOverview.self)
-                    overviews.append(overview)
+                    let novelInfo = try unkeyedContainer.decode(NovelInfo.self)
+                    novelInfoList.append(novelInfo)
                 }
             
             } catch {
@@ -45,6 +45,6 @@ extension NovelOverviewList: Decodable {
 
         }
         
-        self.init(metaData: meta, novelOverviews: overviews)
+        self.init(metaData: meta, novelInfoList: novelInfoList)
     }
 }
