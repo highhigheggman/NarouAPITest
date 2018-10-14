@@ -15,7 +15,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let narouAPI = NarouAPI()
-        narouAPI.getOverViewList(sortOption: .hyoka)
+        
+        narouAPI.getNovelInfo(sortOption: .hyoka, completion: { apiResponse, error in
+            
+            guard let data = apiResponse else {
+                print("Error: \(error!)")
+                return
+            }
+            
+            print(data.novelInfoList)
+        })
+        
     }
 
 
