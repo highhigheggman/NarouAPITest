@@ -16,9 +16,10 @@ class NarouAPI {
         baseURL = "https://api.syosetu.com/novelapi/api/"
     }
     
-    func getOverViewList(sortOption: NarouSortOption, completion: @escaping (NarouResult<NarouAPIResponse>) -> ()){
+    func getNovelInfo(sortOption: NarouSortOption, completion: @escaping (NarouAPIResponse?, Error?) -> ()){
+        
         let parameters: Parameters = [
-            //"out" : "json",
+            "out" : "json",
             "order" : sortOption.rawValue,
             "of" : "t-n-u-w-s-gp-gl",
             
@@ -29,23 +30,23 @@ class NarouAPI {
             .validate(contentType: ["application/json"])
             .responseData { response in
                 
-                guard response.error == nil else {
-                    return(.failure(NarouAPIError.network))
-                }
+                var apiResponse: NarouAPIResponse? = nil
+                var apiError: NarouAPIError? = nil
                 
                 switch response.result {
                 case .success:
                     guard let data = response.data else { return }
                     do {
-                        let apiResponse: NarouAPIResponse = try JSONDecoder().decode(NarouAPIResponse.self, from: data)
-                        print(apiResponse.novelInfoList)
+                        apiResponse = try JSONDecoder().decode(NarouAPIResponse.self, from: data)
                     } catch {
-                        
+                        apiError = NarouAPIError.parseJSON
                     }
                     
-                case.failure(let error):
-                    print(error)
+                case.failure:
+                    apiError = NarouAPIError.network
                 }
+                
+                completion(apiResponse, apiError)
             
         }
     }
