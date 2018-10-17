@@ -23,19 +23,20 @@ class NarouAPI {
             "order" : sortOption.rawValue,
             "of" : "t-n-u-w-s-gp-gl",
             
-        ]
+            ]
+        
+        var apiResponse: NarouAPIResponse? = nil
+        var apiError: NarouAPIError? = nil
         
         Alamofire.request(baseURL,method: .get, parameters: parameters)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
                 
-                var apiResponse: NarouAPIResponse? = nil
-                var apiError: NarouAPIError? = nil
-                
                 switch response.result {
                 case .success:
-                    guard let data = response.data else { return }
+                    guard let data = response.data else {return}
+                    
                     do {
                         apiResponse = try JSONDecoder().decode(NarouAPIResponse.self, from: data)
                     } catch {
@@ -43,14 +44,22 @@ class NarouAPI {
                     }
                     
                 case.failure:
-                    apiError = NarouAPIError.network
+                    let reachabilityManager = NetworkReachabilityManager()
+                    
+                    reachabilityManager?.listener = { status in
+                        switch status {
+                        case .notReachable:
+                            apiError = NarouAPIError.network
+                            
+                        case .reachable, .unknown:
+                            apiError = NarouAPIError.server
+                        }                    }
+                    
+                    completion(apiResponse, apiError)
+                    
                 }
-                
-                completion(apiResponse, apiError)
-            
         }
+        
     }
-    
-    
     
 }
