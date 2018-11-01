@@ -86,8 +86,11 @@
 			children = (
 				6F108061215FA0B9008FE28A /* AppDelegate.swift */,
 				6F108063215FA0B9008FE28A /* ViewController.swift */,
-				6F108065215FA0B9008FE28A /* Main.storyboard */,
+				6F6FC8D3218B3A26007C9C30 /* View */,
+				6F6FC8D4218B3A31007C9C30 /* ViewModel */,
+				6F6FC8D5218B3A3D007C9C30 /* Model */,
 				6F10806B215FA0BE008FE28A /* Assets.xcassets */,
+				6F108065215FA0B9008FE28A /* Main.storyboard */,
 				6F10806D215FA0BE008FE28A /* LaunchScreen.storyboard */,
 				6F108070215FA0BE008FE28A /* Info.plist */,
 				6F108068215FA0B9008FE28A /* NarouAPITest.xcdatamodeld */,
@@ -107,6 +110,27 @@
 				6F6FC8C5216B2637007C9C30 /* NarouAPIResponse.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		6F6FC8D3218B3A26007C9C30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6F6FC8D4218B3A31007C9C30 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6F6FC8D5218B3A3D007C9C30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		76DED2ECDC53338207097989 /* Frameworks */ = {

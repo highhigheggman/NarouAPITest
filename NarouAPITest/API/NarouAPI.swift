@@ -16,13 +16,13 @@ class NarouAPI {
         baseURL = "https://api.syosetu.com/novelapi/api/"
     }
     
-    func getNovelInfo(sortOption: NarouSortOption, completion: @escaping (NarouAPIResponse?, Error?) -> ()){
+    func getNovelInfo(sortOption: NarouSortOption? = nil, limit: Int = 20, completion: @escaping (NarouAPIResponse?, Error?) -> ()){
         
         let parameters: Parameters = [
             "out" : "json",
-            "order" : sortOption.rawValue,
-            "of" : "t-n-u-w-s-gp-gl",
-            
+            "order" : sortOption?.rawValue ?? "",
+            "lim" : String(limit),
+            "of" : "t-n-u-w-s-gp-gl"
             ]
         
         var apiResponse: NarouAPIResponse? = nil
@@ -44,20 +44,10 @@ class NarouAPI {
                     }
                     
                 case.failure:
-                    let reachabilityManager = NetworkReachabilityManager()
-                    
-                    reachabilityManager?.listener = { status in
-                        switch status {
-                        case .notReachable:
-                            apiError = NarouAPIError.network
-                            
-                        case .reachable, .unknown:
-                            apiError = NarouAPIError.server
-                        }                    }
-                    
-                    completion(apiResponse, apiError)
-                    
+                    apiError = NarouAPIError.server
                 }
+                
+                completion(apiResponse, apiError)
         }
         
     }

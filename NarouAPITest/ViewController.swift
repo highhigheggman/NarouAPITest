@@ -16,14 +16,19 @@ class ViewController: UIViewController {
         
         let narouAPI = NarouAPI()
         
-        narouAPI.getNovelInfo(sortOption: .hyoka, completion: { apiResponse, error in
+        narouAPI.getNovelInfo(sortOption: .hyoka, limit: 50, completion: { apiResponse, error in
             
             guard let data = apiResponse else {
                 print("Error: \(error!)")
                 return
             }
             
-            print(data.novelInfoList)
+            for novel in data.novelInfoList {
+                print(novel)
+            }
+            
+            print()
+            print(String(data.novelInfoList.count) + "/" + String(data.metaData.allcount))
         })
         
     }
