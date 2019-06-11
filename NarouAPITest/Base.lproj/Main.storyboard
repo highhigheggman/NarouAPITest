@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-865" y="134"/>
         </scene>
-        <!--Novel List View Controller-->
+        <!--List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NovelListViewController" customModule="NarouAPITest" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,9 +57,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nWm-dg-ac5"/>
+                    <navigationItem key="navigationItem" title="List" id="h2o-bN-yzp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="tuh-gP-0ht"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="NovelListTable" destination="yiY-Cn-hFw" id="co6-ic-3Cd"/>
+                        <outlet property="RefreshButton" destination="tuh-gP-0ht" id="XgC-XE-H2q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

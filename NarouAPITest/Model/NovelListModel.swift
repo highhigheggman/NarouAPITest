@@ -1,21 +1,29 @@
 //
-//  ViewController.swift
+//  NovelListModel.swift
 //  NarouAPITest
 //
-//  Created by yoshiki-t on 2018/09/29.
+//  Created by yoshiki-t on 2018/11/03.
 //  Copyright © 2018 yoshiki-t. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RxSwift
+import RxCocoa
 
-class ViewController: UIViewController {
+protocol NovelListModel {
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        let narouAPI = NarouAPI()
-        
+class DefaultNovelListModel: NovelListModel {
+    
+    var novelList: [NovelInfo]
+    let narouAPI: NarouAPI
+    
+    init() {
+        narouAPI = NarouAPI()
+        novelList = []
+    }
+    
+    func updateNovelList() {
         narouAPI.getNovelInfo(sortOption: .hyoka, limit: 50, completion: { apiResponse, error in
             
             guard let data = apiResponse else {
@@ -23,16 +31,11 @@ class ViewController: UIViewController {
                 return
             }
             
-            for novel in data.novelInfoList {
-                print(novel)
-            }
-            
             print()
             print(String(data.novelInfoList.count) + "/" + String(data.metaData.allcount))
+            
+            self.novelList = data.novelInfoList
         })
-        
     }
-
-
+    
 }
-

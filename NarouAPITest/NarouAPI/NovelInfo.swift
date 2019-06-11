@@ -26,3 +26,8 @@ struct NovelInfo: Codable {
         case globalPoint = "global_point"
     }
 }
+
+struct MetaData: Codable {
+    let allcount: Int
+}
+
