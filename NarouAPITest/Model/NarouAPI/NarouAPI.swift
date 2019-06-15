@@ -25,7 +25,7 @@ class NarouAPI {
             "order" : sortOption?.rawValue ?? "",
             "lim" : String(limit),
             "of" : "t-n-u-w-s-gp-gl"
-            ]
+        ]
         
         var apiResponse: NarouAPIResponse? = nil
         var apiError: NarouAPIError? = nil

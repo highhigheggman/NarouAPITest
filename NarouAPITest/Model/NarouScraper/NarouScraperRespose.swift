@@ -8,11 +8,11 @@
 
 import Foundation
 
-class NarouScraperResponse {
+struct NarouScraperResponse {
     var title: String
     var body: [String]
     
-    init(_ title: String?, body: [String]) {
+    init(_ title: String?, _ body: [String]) {
         self.title = title ?? ""
         self.body = body
     }

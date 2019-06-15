@@ -19,8 +19,10 @@ class NarouScraper {
         baseURL = "https://ncode.syosetu.com/"
     }
     
-    func getNovelBody(_ ncode: String, _ episode: Int) {
+    func getNovelBody(_ ncode: String, _ episode: Int, completion: @escaping (NarouScraperResponse?, Error?) -> ()) {
         let url = baseURL + ncode + "/\(String(episode))"
+        var scraperResponse: NarouScraperResponse?
+        var scraperError: NarouScraperError?
         
         Alamofire.request(url, method: .get)
             .validate(statusCode: 200..<300)
@@ -29,27 +31,31 @@ class NarouScraper {
                 switch response.result {
                 case .success:
                     guard let html = response.value else {return}
-                    self.parseNovelBody(html: html)
+                    scraperResponse = self.parseNovelBody(html: html)
                 case.failure:
-                    print("err")
+                    scraperError = .server
                 }
+                
+                completion(scraperResponse, scraperError)
         }
     }
     
-    private func parseNovelBody(html: String) {
+    private func parseNovelBody(html: String) -> NarouScraperResponse? {
         guard let doc = try? HTML(html: html, encoding: .utf8) else {
-            return
+            return nil
         }
         
         let title = doc.xpath("//*[@id=\"novel_color\"]/p").first?.text ?? ""
-        let body = doc.xpath("//*[@id=\"novel_honbun\"]")
-        body.forEach { line in
-            guard let text = line.text else {
-                return
-            }
-            print(text)
-        }
-        print(title)
+        let body = doc.xpath("//*[@id=\"novel_honbun\"]").compactMap { $0.text }
+        
+        return NarouScraperResponse(title, body)
     }
+}
+
+enum NarouScraperError: Error {
+    case network
+    case server
+    case parse
+    case unknown(String)
 }
 
