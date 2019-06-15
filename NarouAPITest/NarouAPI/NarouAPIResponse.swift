@@ -6,7 +6,30 @@
 //  Copyright © 2018 yoshiki-t. All rights reserved.
 //
 
-import Foundation
+struct NovelInfo: Codable {
+    var title: String
+    var ncode: String
+    var userid: Int
+    var writer: String
+    var story: String
+    
+    var generalLastup: String
+    var globalPoint: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case ncode = "ncode"
+        case userid = "userid"
+        case writer = "writer"
+        case story = "story"
+        case generalLastup = "general_lastup"
+        case globalPoint = "global_point"
+    }
+}
+
+struct MetaData: Codable {
+    let allcount: Int
+}
 
 struct NarouAPIResponse {
     let metaData: MetaData

@@ -14,6 +14,7 @@ class NovelListViewModel {
     
     private let novelListRelay = BehaviorRelay<[NovelInfo]>(value: [])
     private let disposeBag = DisposeBag()
+    private let narouManager = NarouManager()
     
     // Output to View
     var canReferesh: Bool
@@ -27,8 +28,12 @@ class NovelListViewModel {
             .emit(onNext: { [weak self] _ in
                 guard let self = self else {return}
                 self.canReferesh = false
+                self.narouManager.updateNovelList()
                 
-                print("tap")
+                if let novel = self.narouManager.novelList.first {
+                    self.narouManager.getNovelBody(novel.ncode, episode: 1)
+
+                }
             })
             .disposed(by: disposeBag)
         

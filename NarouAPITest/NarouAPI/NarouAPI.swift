@@ -8,6 +8,8 @@
 
 import Alamofire
 
+/// 小説家になろうのAPIを扱うクラス
+/// 小説のタイトルリスト、ランキング情報を取得可能
 class NarouAPI {
     
     var baseURL: String

@@ -10,16 +10,17 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol NovelListModel {
-}
 
-class DefaultNovelListModel: NovelListModel {
+class NarouManager {
     
     var novelList: [NovelInfo]
+    
     let narouAPI: NarouAPI
+    let narouScraper: NarouScraper
     
     init() {
         narouAPI = NarouAPI()
+        narouScraper = NarouScraper()
         novelList = []
     }
     
@@ -31,11 +32,18 @@ class DefaultNovelListModel: NovelListModel {
                 return
             }
             
-            print()
+            if let novel = data.novelInfoList.first {
+                print("\(novel.ncode): \(novel.title)")
+            }
+            
             print(String(data.novelInfoList.count) + "/" + String(data.metaData.allcount))
             
             self.novelList = data.novelInfoList
         })
+    }
+    
+    func getNovelBody(_ ncode: String, episode: Int) {
+        narouScraper.getNovelBody(ncode, episode)
     }
     
 }
