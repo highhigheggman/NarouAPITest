@@ -82,8 +82,6 @@
 				6F6FC8D3218B3A26007C9C30 /* ViewController */,
 				6F6FC8D4218B3A31007C9C30 /* ViewModel */,
 				6F6FC8D5218B3A3D007C9C30 /* Model */,
-				6F6FC8CE216FA080007C9C30 /* NarouAPI */,
-				6F35262322B059CF0023E435 /* NarouScraper */,
 				6FB9F1C8218DE1880015A68F /* CustomView */,
 				6F108061215FA0B9008FE28A /* AppDelegate.swift */,
 				6F10806B215FA0BE008FE28A /* Assets.xcassets */,
@@ -102,6 +100,14 @@
 				6F35262622B4F9D30023E435 /* NarouScraperRespose.swift */,
 			);
 			path = NarouScraper;
+			sourceTree = "<group>";
+		};
+		6F35262822B4FD410023E435 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6F6FC8D8218DDBD5007C9C30 /* NarouManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		6F6FC8CE216FA080007C9C30 /* NarouAPI */ = {
@@ -132,7 +138,9 @@
 		6F6FC8D5218B3A3D007C9C30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6F6FC8D8218DDBD5007C9C30 /* NarouManager.swift */,
+				6F35262822B4FD410023E435 /* Manager */,
+				6F6FC8CE216FA080007C9C30 /* NarouAPI */,
+				6F35262322B059CF0023E435 /* NarouScraper */,
 			);
 			path = Model;
 			sourceTree = "<group>";

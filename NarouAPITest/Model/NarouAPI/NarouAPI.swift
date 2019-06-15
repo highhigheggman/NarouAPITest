@@ -42,7 +42,7 @@ class NarouAPI {
                     do {
                         apiResponse = try JSONDecoder().decode(NarouAPIResponse.self, from: data)
                     } catch {
-                        apiError = NarouAPIError.parseJSON
+                        apiError = NarouAPIError.parse
                     }
                     
                 case.failure:
@@ -59,7 +59,7 @@ class NarouAPI {
 enum NarouAPIError: Error {
     case network
     case server
-    case parseJSON
+    case parse
     case unknown(String)
 }
 
