@@ -43,7 +43,8 @@ class NarouManager {
     }
     
     func getNovelBody(_ ncode: String, episode: Int) {
-        narouScraper.getNovelBody(ncode, episode, completion: {_,_ in })
+        //narouScraper.getNovelBody(ncode, episode, completion: {_,_ in })
+        narouScraper.getNovelChapterList(ncode)
     }
     
 }

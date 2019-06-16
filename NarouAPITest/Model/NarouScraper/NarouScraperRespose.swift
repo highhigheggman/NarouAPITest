@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NarouScraperResponse {
+struct NarouScraperBody {
     var title: String
     var body: [String]
     
@@ -16,4 +16,9 @@ struct NarouScraperResponse {
         self.title = title ?? ""
         self.body = body
     }
+}
+
+struct NarouScraperChapter {
+    var title: String
+    var episodes: [(title: String, updateDateString: String)]
 }
