@@ -43,8 +43,18 @@ class NarouManager {
     }
     
     func getNovelBody(_ ncode: String, episode: Int) {
-        //narouScraper.getNovelBody(ncode, episode, completion: {_,_ in })
-        narouScraper.getNovelChapterList(ncode)
+        narouScraper.getNovelBody(ncode, episode, completion: { (respones, error) in
+            if let _ = error { return }
+            print(respones?.title ?? "")
+        })
     }
-    
+
+    func getNovelChapterList(_ ncode: String) {
+        narouScraper.getNovelChapterList(ncode, completion: { (response, error) in
+            if let _ = error { return }
+            response.forEach { chapter in
+                print(chapter.title ?? "")
+            }
+        })
+    }
 }

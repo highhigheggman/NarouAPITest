@@ -32,7 +32,7 @@ class NovelListViewModel {
                 
                 if let novel = self.narouManager.novelList.first {
                     self.narouManager.getNovelBody(novel.ncode, episode: 1)
-
+                    self.narouManager.getNovelChapterList(novel.ncode)
                 }
             })
             .disposed(by: disposeBag)

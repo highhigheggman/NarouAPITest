@@ -53,7 +53,7 @@ class NarouScraper {
     }
     
     /// 章区切りのタイトルリストを取得
-    func getNovelChapterList(_ ncode: String) {
+    func getNovelChapterList(_ ncode: String, completion: @escaping ([NarouScraperChapter], Error?) -> ()) {
         let url = baseURL + ncode
         var scraperResponse =  [NarouScraperChapter]()
         var scraperError: NarouScraperError?
@@ -69,8 +69,9 @@ class NarouScraper {
                 case.failure:
                     scraperError = .server
                 }
+
+                completion(scraperResponse, scraperError)
         }
-        
     }
     
     private func parseNovelChapterList(_ html: String) -> [NarouScraperChapter] {
@@ -84,15 +85,14 @@ class NarouScraper {
         
         elemnts.forEach { element in
             if element.className == "chapter_title" {
+                chapterIndex = (chapters.isEmpty ? 0 : chapterIndex + 1)
                 chapters.append(NarouScraperChapter(title: element.text ?? "", episodes: []))
-                chapterIndex = (chapterIndex != 0 ? chapterIndex : chapterIndex + 1)
-                print(element.text ?? "")
 
             } else if element.className == "novel_sublist2" {
                 let title = element.at_xpath("dd[@class='subtitle']")?.text?.trimmingCharacters(in: .whitespacesAndNewlines)
                 let dateString = element.at_xpath("dt[@class='long_update']/text()")?.text?.trimmingCharacters(in: .whitespacesAndNewlines)
                 let didUpdate = element.at_xpath("dt[@class='long_update']/span") != nil
-                print("episode:\(title ?? ""), \(dateString ?? ""), \(didUpdate ? "[update]": "")")
+                chapters[chapterIndex].episodes.append((title: title, updateDateString: dateString, didUpdate: didUpdate))
             }
         }
         

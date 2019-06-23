@@ -19,6 +19,6 @@ struct NarouScraperBody {
 }
 
 struct NarouScraperChapter {
-    var title: String
-    var episodes: [(title: String, updateDateString: String)]
+    var title: String?
+    var episodes: [(title: String?, updateDateString: String?, didUpdate: Bool)]
 }
